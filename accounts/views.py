@@ -3,8 +3,6 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
 import MySQLdb
 import mysql.connector
-
-
 # Create your views here.
 
 def login(request):
