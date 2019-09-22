@@ -1,7 +1,7 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -16,6 +16,7 @@
     <!-- Icons font CSS-->
     <link href="{% static 'vendor_register/mdi-font/css_reg/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
     <link href="{% static 'vendor_register/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+
     <!-- Font special for pages-->
     <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i' %}" rel="stylesheet">
 
@@ -26,24 +27,40 @@
     <!-- Main CSS-->
     <link href="{% static 'css_register/main.css' %}" rel="stylesheet" media="all">
 </head>
-
 <body>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Event Registration Form</h2>
+                    <h2 class="title">Clinic Registration Form</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{% url 'register' %}" method="post">
+                    <form  method="post">
                         {% csrf_token %}
+                        <div class="form-row m-b-55">
+                            <div class="name">Choose Your post:</div>
+                                <div class="value">
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group-desc">    
+                                                <select name="profession">
+                                                    <option placeholder="Select"></option>
+                                                    <option value="Patient">Patient</option>
+                                                    <option value="Doctor">Doctor</option>
+                                                    <option value="Receptionist">Receptionist</option>
+                                                </select>                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="form-row m-b-55">
                             <div class="name">Name</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="username">
+                                            <input class="input--style-5" type="text" name="usrn">
                                             <label class="label--desc">Username</label>
                                         </div>
                                     </div>
@@ -51,26 +68,68 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="form-row m-b-55">
+                            <div class="name">Address</div>
+                                <div class="value">
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group-desc">
+                                                <input class="input--style-5" type="text" name="addr">
+                                                <label class="label--desc">Enter address</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="form-row">
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="email" name="email">
+                                    <label class="label--desc">Enter email</label>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="name">ID proof:</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input type="radio" name="id_p" value="aadhar">Adhaar card<br>
+                                    <input type="radio" name="id_p" value="pan">PAN card<br>
+                                    <input class="input--style-5" type="number" name="id_proof">
+                                    <label class="label--desc">Enter Number</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Gender</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input type="radio" name="gender" value="male">Male<br>
+                                    <input type="radio" name="gender" value="female">Female<br>
+                                    <input type="radio" name="gender" value="others">Others<br>
+                                    <input class="input--style-5" type="text" name="gender">
+                                    <label class="label--desc">Enter Gender credentials</label>
+                                </div>
+                            </div>
+                        </div>          
+                        <div class="form-row">
+                                <div class="name">DOB</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <input type="date" name="dob">
+                                    </div>
+                                </div>
+                            </div>
+                              
                         <div class="form-row m-b-55">
                             <div class="name">Phone</div>
                             <div class="value">
                                 <div class="row row-refine">
-                                    <div class="col-3">
-                                        
-                                        
-                                    </div>
+                                    <div class="col-3"></div>
                                     <div class="col-9">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="phone">
+                                            <input class="input--style-5" type="number" name="phone">
                                             <label class="label--desc">Phone Number</label>
                                         </div>
                                     </div>
@@ -78,28 +137,19 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            
                             <div class="value">
-                                <div class="input-group">
-                                   
-                                   
-                                </div>
+                                <div class="input-group"></div>
                             </div>
                         </div>
-                        <div class="form-row p-t-20">
-                            
-                            
-                        </div>
+                        <div class="form-row p-t-20"></div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit" onclick="register">Register</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit">NEXT</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
 </html>
 <!-- end document-->

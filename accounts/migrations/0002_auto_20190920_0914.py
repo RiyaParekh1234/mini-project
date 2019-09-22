@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('accounts', '0001_initial'),
     ]
-
+'''
     operations = [
         migrations.AlterField(
             model_name='registration',
@@ -16,3 +16,4 @@ class Migration(migrations.Migration):
             field=models.IntegerField(),
         ),
     ]
+'''

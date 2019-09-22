@@ -1,15 +1,21 @@
 from django.urls import path
 from . import views
+from django.conf.urls import url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
-    path('index_reg/',views.register,name='register'),
-    path('login',views.login,name='login'),
+    #path('index_reg/',views.register,name='register'),
+    path('sign_in',views.sign_in,name='sign_in'),
     path('logout',views.logout,name='logout'),
     path('',views.index,name='index'),
     path('contact',views.contact,name="contact"),
     path('about',views.about,name="about"),
-    path('blog-home',views.blog_home,name="blog_home"),
-    path('blog-single',views.blog_single,name="blog_single"),
-    path('login_success',views.log_success,name="log_success"),
+    path('blog-home',views.blog_home,name="blog-home"),
+    path('blog-single',views.blog_single,name="blog-single"),
+    path('login_success',views.login_success,name="log_success"),
+    #path('p_next',views.register,name="register")
+]
+urlpatterns += [
+    url('index_reg',views.register,name="register"),
+    url('p_next',views.p_next,name="p_next")
 ]
 urlpatterns += staticfiles_urlpatterns()

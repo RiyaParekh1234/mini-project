@@ -3,9 +3,13 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
 import MySQLdb
 import mysql.connector
+from django import forms
+from importlib import import_module
+from django.conf import settings
+
 # Create your views here.
 
-def login(request):
+'''def login(request):
     if request.method == 'POST':
         usr = request.POST['usrname']
         pass1 = request.POST['pass']
@@ -16,9 +20,9 @@ def login(request):
         else:
             print("Invalid credentials")    
     else:
-          return render(request,'login_page.html')  
+          return render(request,'sign_in.html')  
           
-'''def register(request):
+def register(request):
     if request.method == 'POST':
         usr = request.POST['usrname']
         pass1 = request.POST['pass']
@@ -40,23 +44,49 @@ def login(request):
     else:    
         return render(request,'index_reg.html')'''
 
-def register(request):
-    conn = mysql.connector.connect(user = 'root',password = 'shreya00',host = 'localhost',database = 'trial')
+def sign_in(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     if request.method == 'POST':
-        usr = request.POST['username']
-        emailid = request.POST['email']
-        phno = request.POST['phone']
-
-        query = 'insert into accounts_registration values(105,%s,%s,%s)'
-        args = (usr,emailid,phno)
+        usrn = request.POST['usrname']
+        pass1 = request.POST['pass']
+        query = 'insert into accounts_signin values(%s,%s)'
+        args = (usrn,pass1)
         mycursor.execute(query,args)
         conn.commit()
-    else:
-        return render(request,'index_reg.html') 
+        conn.close()
+    
+    return render(request,'sign_in.html') 
 
-def log_success(request):
-    return redirect('login_success.html')
+    
+
+def p_next(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    if request.method == 'POST':
+        '''usrname = request.POST['usrn']
+        addr = request.POST['addr']
+        id_p = request.POST['id_proof']
+        gen = request.POST['gender']
+        dob = request.POST['dob']
+        emailid = request.POST['email']
+        phno = request.POST['phone']'''
+        wt = request.POST['wt']
+        ht = request.POST['ht']
+        med = request.POST['med']
+        pas1 = request.POST['pass1']
+        pas2 = request.POST['pass2']
+
+        query = "update patient_registration set wt="+ wt + ",ht=" + ht + ",med_history ='" + med + "',pswd1 ='"+pas1+"',pswd2 = '"+pas2+"' where email = '" + request.session["email"] + "'"  
+        mycursor.execute(query,())
+        conn.commit()
+        conn.close()
+        return redirect('/login_success')
+    else:
+        return render(request,'p_next.html') 
+
+def login_success(request):
+    return render(request,'login_success.html')
 
 def logout(request):
     auth.logout(request)
@@ -72,7 +102,30 @@ def contact(request):
     return render(request,'contact.html')
 
 def blog_home(request):
-    return render(request,'blog_home.html')
+    return render(request,'blog-home.html')
 
 def blog_single(request):
-    return render(request,'blog_single.html')
+    return render(request,'blog-single.html')
+
+def register(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    if request.method == 'POST':
+        prof = request.POST['profession']
+        usrname = request.POST['usrn']
+        addr = request.POST['addr']
+        emailid = request.POST['email']
+        id_p = int(request.POST['id_proof'])
+        gen = request.POST['gender']
+        dob = request.POST['dob']
+        phno = int(request.POST['phone'])
+
+        query = 'insert into patient_registration values (NULL,"' + usrname + '","' + emailid + '",' + str(phno)+',"' + addr + '",' + str(id_p) + ',"'+ dob + '","' + gen + '",NULL, NULL, NULL, NULL, NULL)'
+        mycursor.execute(query,())
+        conn.commit()
+        conn.close()
+        request.session["email"] = emailid
+        request.session["work"] = prof
+        return redirect('/p_next')
+    else:
+        return render(request,'index_reg.html')

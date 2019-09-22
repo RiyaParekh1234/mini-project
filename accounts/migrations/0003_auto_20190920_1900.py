@@ -8,10 +8,11 @@ class Migration(migrations.Migration):
     dependencies = [
         ('accounts', '0002_auto_20190920_0914'),
     ]
-
+'''
     operations = [
         migrations.AlterModelTable(
             name='registration',
             table='accounts_registration',
         ),
     ]
+'''

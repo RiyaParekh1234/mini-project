@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
     ]
-
+'''
     operations = [
         migrations.CreateModel(
             name='registration',
@@ -21,3 +21,4 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
+'''
