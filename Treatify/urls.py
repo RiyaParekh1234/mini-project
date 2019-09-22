@@ -20,5 +20,6 @@ urlpatterns = [
     path('login/',include('login.urls')),
     path('admin/', admin.site.urls),
     path('',include('accounts.urls')),
+     path('patient/',include('patient.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
