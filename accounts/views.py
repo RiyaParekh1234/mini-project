@@ -44,15 +44,29 @@ def register(request):
     else:    
         return render(request,'index_reg.html')'''
 
-def sign_in(request):
+def login(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     if request.method == 'POST':
         usrn = request.POST['usrname']
         pass1 = request.POST['pass']
+        query="select name,pswd1 from patient_registration"
+        mycursor.execute(query)
+        result=mycursor.fetchall()
+        for res1 in result:
+            if usrn in res1[0]:
+                print("user accepted!")
+                if pass1 in res1[1]:
+                    print("Password accepted")
+                    return redirect("/")
+                else:
+                    print("Incorrect password")
+            else:
+                print("Incorrect user")
+            '''
         query = 'insert into accounts_signin values(%s,%s)'
         args = (usrn,pass1)
-        mycursor.execute(query,args)
+        mycursor.execute(query,args)'''
         conn.commit()
         conn.close()
     
@@ -64,13 +78,6 @@ def p_next(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     if request.method == 'POST':
-        '''usrname = request.POST['usrn']
-        addr = request.POST['addr']
-        id_p = request.POST['id_proof']
-        gen = request.POST['gender']
-        dob = request.POST['dob']
-        emailid = request.POST['email']
-        phno = request.POST['phone']'''
         wt = request.POST['wt']
         ht = request.POST['ht']
         med = request.POST['med']
@@ -81,9 +88,34 @@ def p_next(request):
         mycursor.execute(query,())
         conn.commit()
         conn.close()
-        return redirect('/login_success')
+        request.session["pswd"] = pas1
+        return redirect('/')
     else:
         return render(request,'p_next.html') 
+        
+def register(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    if request.method == 'POST':
+        prof = request.POST['profession']
+        usrname = request.POST['usrn']
+        addr = request.POST['addr']
+        emailid = request.POST['email']
+        id_p = int(request.POST['id_proof'])
+        gen = request.POST['gender']
+        dob = request.POST['dob']
+        phno = int(request.POST['phone'])
+
+        query = 'insert into patient_registration values (NULL,"' + usrname + '","' + emailid + '",' + str(phno)+',"' + addr + '",' + str(id_p) + ',"'+ dob + '","' + gen + '",NULL, NULL, NULL, NULL, NULL)'
+        mycursor.execute(query,())
+        conn.commit()
+        conn.close()
+        request.session["email"] = emailid
+        request.session["work"] = prof
+        request.session["usr"] = usrname
+        return redirect('/p_next')
+    else:
+        return render(request,'index_reg.html')
 
 def login_success(request):
     return render(request,'login_success.html')
@@ -106,26 +138,3 @@ def blog_home(request):
 
 def blog_single(request):
     return render(request,'blog-single.html')
-
-def register(request):
-    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
-    mycursor = conn.cursor()
-    if request.method == 'POST':
-        prof = request.POST['profession']
-        usrname = request.POST['usrn']
-        addr = request.POST['addr']
-        emailid = request.POST['email']
-        id_p = int(request.POST['id_proof'])
-        gen = request.POST['gender']
-        dob = request.POST['dob']
-        phno = int(request.POST['phone'])
-
-        query = 'insert into patient_registration values (NULL,"' + usrname + '","' + emailid + '",' + str(phno)+',"' + addr + '",' + str(id_p) + ',"'+ dob + '","' + gen + '",NULL, NULL, NULL, NULL, NULL)'
-        mycursor.execute(query,())
-        conn.commit()
-        conn.close()
-        request.session["email"] = emailid
-        request.session["work"] = prof
-        return redirect('/p_next')
-    else:
-        return render(request,'index_reg.html')
