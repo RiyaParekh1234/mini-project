@@ -112,7 +112,7 @@ def register(request):
         dob = request.POST['dob']
         phno = int(request.POST['phone'])
 
-        query = 'insert into person(id,prof,usrname,addr,emailid,id_p,gender,dob,phno) values (1,"' + prof + '","' + usrname + '","' + addr + '","' + emailid + '",' + str(id_p) + ',"' + gen + '","'+ dob + '",' + str(phno)+')'
+        query = 'insert into person(id,prof,usrname,addr,emailid,id_p,gender,dob,phno) values (101,"' + prof + '","' + usrname + '","' + addr + '","' + emailid + '",' + str(id_p) + ',"' + gen + '","'+ dob + '",' + str(phno)+')'
         mycursor.execute(query,())
         conn.commit()
         conn.close()
@@ -130,8 +130,8 @@ def login_success(request):
     return render(request,'patient.html')    
 '''
 def p_logout(request):
-    logout(request)
-    return redirect('/')
+    request.session.flush()
+    return redirect('index.html')
 
 def index(request):
     return render(request,'index.html')
