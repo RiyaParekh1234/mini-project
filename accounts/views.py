@@ -49,23 +49,21 @@ def login(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     if request.method == 'POST':
-        
         usrn = request.POST['usrname']
         pass1 = request.POST['pass']
-        query="select usrname,prof,pswd1 from person"
+        query="select prof,usrname,pswd1 from person"
         mycursor.execute(query)
         result=mycursor.fetchall()
         for res1 in result:
-            if usrn in res1[0]:
+            if usrn in res1[1]:
                 print("user accepted!")
-                if pass1 in res1[1]:
+                if pass1 in res1[2]:
                     print("Password accepted")
-                    if prof == 'patient':
-                        return redirect('/patient')
-                    else:
-                        return redirect('/doctor')
-
                     
+                    if res1[0] == 'Patient':
+                       return redirect('/patient')
+                    elif res1[0] == 'Doctor':
+                       return redirect('/doctor')   
                 else:
                     print("Incorrect password")
             else:
@@ -105,6 +103,23 @@ def d_next(request):
         return redirect('/')
     else:
         return render(request,'d_next.html') 
+
+def s_hours(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    if request.method == 'POST':
+        query="select usrname from person p,doctor d where p.id=d.id"
+        mycursor.execute(query)
+        result=mycursor.fetchone()
+        newtime = request.POST['time']
+        query1 = "update doctor set timing = '"+ newtime +"' where id=(select id from person where usrname='"+ result[0] +"')"
+        mycursor.execute(query1,())
+        conn.commit()
+        conn.close()
+        return redirect('/doctor')
+    else:
+        return render(request,'s_hours.html')
+
 
 def p_next(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
