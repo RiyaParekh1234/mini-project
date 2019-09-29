@@ -15,7 +15,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		<title>Medical</title>
+		<title>Treatify</title>
 
 		<link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700' %}" rel="stylesheet"> 
 			<!--
@@ -38,11 +38,11 @@
 	  			<div class="container">
 			  		<div class="row align-items-center">
 			  			<div class="col-lg-6 col-sm-6 col-4 header-top-left">
-			  				<a href="{% static 'tel:+9530123654896' %}"><span class="lnr lnr-phone-handset"></span> <span class="text"><span class="text">+953 012 3654 896</span></span></a>
-				  			<a href="{% static 'mailto:support@colorlib.com' %}"><span class="lnr lnr-envelope"></span> <span class="text"><span class="text">support@colorlib.com</span></span></a>			
+			  				<a href="{% static 'tel:+9530123654896' %}"><span class="lnr lnr-phone-handset"></span> <span class="text"><span class="text">+01234 56789</span></span></a>
+				  			<a href="{% static 'mailto:support@colorlib.com' %}"><span class="lnr lnr-envelope"></span> <span class="text"><span class="text">ssrr1999@gmail.com</span></span></a>			
 			  			</div>
 			  			<div class="col-lg-6 col-sm-6 col-8 header-top-right">
-							<a href="appointment" class="primary-btn text-uppercase">Book Appointment</a>
+							<a href="sign_in" class="primary-btn text-uppercase">View Receptionist</a>
 			  			</div>
 			  		</div>			  						
 	  			</div>
@@ -56,18 +56,15 @@
 			        <ul class="nav-menu">
 			          <li><a href="#">Home</a></li>
 			          <li><a href="about">About</a></li>
-			          
-			          
 			          <li class="menu-has-children"><a href="">Blog</a>
 			            <ul>
 			              <li><a href="blog-home">Blog Home</a></li>
 			              <li><a href="blog-single">Blog Single</a></li>
 			            </ul>
-			          </li>	
-			          				          					          		          
-                      <li><a href="contact">Contact</a></li>
-                      <li><a href="logout">Log out</a></li>
-					  
+			          </li>			          		          
+					  <li><a href="contact">Contact</a></li>
+					  <li><a href="index_reg">Register</a></li>
+					  <li><a href="sign_in">Login</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		
 		    	</div>
@@ -84,9 +81,6 @@
 								We Care for Your Health
 								Every Moment		
 							</h1>
-							<p class="pt-10 pb-10 text-white">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.
-							</p>
 							<a href="#" class="primary-btn text-uppercase">Get Started</a>
 						</div>										
 					</div>
@@ -99,12 +93,9 @@
 				<div class="container">
 					<div class="row justify-content-between align-items-center pb-120 appointment-wrap">
 						<div class="col-lg-5 col-md-6 appointment-left">
-							<h1>
+							<h1><br><br>
 								Servicing Hours
 							</h1>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.
-							</p>
 							<ul class="time-list">
 								<li class="d-flex justify-content-between">
 									<span>Monday-Friday</span>
@@ -119,7 +110,7 @@
 									<span>08.00 am - 10.00 pm</span>
 								</li>																
 							</ul>
-						</div>
+						</div><!--
 						<div class="col-lg-6 col-md-6 appointment-right pt-60 pb-60">
 							<form class="form-wrap" action="#">
 								<h3 class="pb-20 text-center mb-30">Book an Appointment</h3>		
@@ -129,18 +120,25 @@
 								<input id="datepicker1" name="dop" class="dates form-control"  placeholder="Date of Birth" type="text">   
 								<div class="form-select" id="service-select">
 									<select>
-										<option data-display="">Disease Type</option>
-										<option value="1">Type One</option>
-										<option value="2">Type Two</option>
-										<option value="3">Type Three</option>
-										<option value="4">Type Four</option>
+										<option data-display="">Timings</option>
+										<option value="1">8:00-9:00AM</option>
+										<option value="2">9:00-10:00AM</option>
+										<option value="3">10:00-11:00AM</option>
+										<option value="4">11:00-12:00PM</option>
+										<option value="5">12:00-1:00PM</option>
+										<option value="6">4:00-5:00PM</option>
+										<option value="7">5:00-6:00PM</option>
+										<option value="8">6:00-7:00PM</option>
+										<option value="9">7:00-8:00PM</option>
+										<option value="10">8:00-9:00PM</option>
+										<option value="11">9:00-10:00PM</option>
 									</select>
 								</div>	
 								<input id="datepicker2" class="dates form-control"  placeholder="appointment Date" type="text">  
 								<textarea name="messege" class="" rows="5" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea> 
 								<button class="primary-btn text-uppercase">Confirm Booking</button>
 							</form>
-						</div>
+						</div>-->
 					</div>
 				</div>	
 			</section>
@@ -153,7 +151,7 @@
 		                <div class="menu-content pb-70 col-lg-7">
 		                    <div class="title text-center">
 		                        <h1 class="mb-10">Our Latest Facilities</h1>
-		                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. </p>
+		                        <p>We provide the best for all and Best of all!<br>Best Doctors, Best treatment and Best care! We provide all gives facilities in reasonable and affordable cost...<br>LET'S TREAT!!!</p>
 		                    </div>
 		                </div>
 		            </div>
@@ -163,16 +161,16 @@
 								<span class="lnr lnr-rocket"></span>
 								<a href="#"><h4>24/7 Emergency</h4></a>
 								<p>
-									inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+									Ask for help anytime, anywhere, anything....We are there for you Always!!
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-facilities">
 								<span class="lnr lnr-heart"></span>
-								<a href="#"><h4>24/7 Emergency</h4></a>
+								<a href="#"><h4>Treatment</h4></a>
 								<p>
-									inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+									We provide Best in treatment for patients...For all types of diseases<br>Just take an appointment! 
 								</p>
 							</div>
 						</div>
@@ -181,16 +179,16 @@
 								<span class="lnr lnr-bug"></span>
 								<a href="#"><h4>Intensive Care</h4></a>
 								<p>
-									inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+									We are always there for you, we take care of our Doctors and patients!
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-facilities">
 								<span class="lnr lnr-users"></span>
-								<a href="#"><h4>Family Planning</h4></a>
+								<a href="#"><h4>Varieties</h4></a>
 								<p>
-									inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.
+									No matter what you are searching for....We provide you all!<br>Just Ask For It!
 								</p>
 							</div>
 						</div>																		
@@ -207,7 +205,7 @@
 						<div class="col-lg-8 offered-left">
 							<h1 class="text-white">Our Offered Services</h1>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.
+								Anything you need,get it here!
 							</p>
 							<div class="service-wrap row">
 								<div class="col-lg-6 col-md-6">
@@ -215,11 +213,9 @@
 										<div class="thumb">
 											<img class="img-fluid" src="{% static 'img/s1.jpg' %}" alt="">		
 										</div>
-										<a href="#">
-											<h4 class="text-white">Cardiac Treatment</h4>
-										</a>	
+										<h4 class="text-white">Cardiac Treatment</h4>
 										<p>
-											inappropriate behavior Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+											The best Heart disease treatment you can get!
 										</p>
 									</div>
 								</div>
@@ -228,11 +224,9 @@
 										<div class="thumb">
 											<img class="img-fluid" src="{% static 'img/s2.jpg' %}" alt="">		
 										</div>
-										<a href="#">
-											<h4 class="text-white">Routine Checkup</h4>
-										</a>	
+										<h4 class="text-white">Routine Checkup</h4>
 										<p>
-											inappropriate behavior Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+											Get your daily checkup done anytime!
 										</p>
 									</div>
 								</div>								
@@ -253,8 +247,7 @@
 		                <div class="menu-content pb-70 col-lg-7">
 		                    <div class="title text-center">
 		                        <h1 class="mb-10">Our Consultants</h1>
-		                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-		                    </div>
+		                        </div>
 		                </div>
 		            </div>
 		            <div class="row justify-content-center d-flex align-items-center">
@@ -263,15 +256,9 @@
 		                        <img class="img-fluid" src="{% static 'img/t1.jpg' %}" alt="">
 		                        <div class="align-items-end justify-content-center d-flex">
 									<div class="social-links">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-behance"></i></a>
 									</div>			                        	
-		                            <p>
-		                            	inappropriate behavior
-		                            </p>
-		                            <h4>Andy Florence</h4>		                            
+		                            <p>Team member</p>
+		                            <h4>Riya Parekh</h4>		                            
 		                        </div>
 		                    </div>
 		                </div>
@@ -280,15 +267,11 @@
 		                        <img class="img-fluid" src="{% static 'img/t2.jpg' %}" alt="">
 		                        <div class="align-items-end justify-content-center d-flex">
 									<div class="social-links">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-behance"></i></a>
 									</div>			                        	
 		                            <p>
-		                            	inappropriate behavior
+		                            	Team member
 		                            </p>
-		                            <h4>Andy Florence</h4>		                            
+		                            <h4>Shreya Mahajan</h4>		                            
 		                        </div>
 		                    </div>
 		                </div>
@@ -297,15 +280,11 @@
 		                        <img class="img-fluid" src="{% static 'img/t3.jpg' %}" alt="">
 		                        <div class="align-items-end justify-content-center d-flex">
 									<div class="social-links">
-										<a href="{% static '#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-behance"></i></a>
 									</div>			                        	
 		                            <p>
 		                            	inappropriate behavior
 		                            </p>
-		                            <h4>Andy Florence</h4>		                            
+		                            <h4>Rashmi Mokashi</h4>		                            
 		                        </div>
 		                    </div>
 		                </div>
@@ -314,15 +293,11 @@
 		                        <img class="img-fluid" src="{% static 'img/t4.jpg' %}" alt="">
 		                        <div class="align-items-end justify-content-center d-flex">
 									<div class="social-links">
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-dribbble"></i></a>
-										<a href="#"><i class="fa fa-behance"></i></a>
 									</div>			                        	
 		                            <p>
-		                            	inappropriate behavior
-		                            </p>
-		                            <h4>Andy Florence</h4>		                            
+										Team member	
+									</p>
+		                            <h4>Shreya Kajbaje</h4>		                            
 		                        </div>
 		                    </div>
 		                </div>		                		                		                
@@ -363,13 +338,13 @@
 										</div>										
 									</div>
 									<p class="text-white">
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										This site provides really nice functions and treatment 
 									</p>
 								</div>
 								<div class="single-feedback-carusel">
 									<img src="{% static 'img/r1.png' %}" alt="">
 									<div class="title d-flex flex-row">
-										<h4 class="text-white pb-10">Fannie Rowe</h4>
+										<h4 class="text-white pb-10">Aniket Parekh</h4>
 										<div class="star">
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
@@ -379,13 +354,13 @@
 										</div>										
 									</div>
 									<p class="text-white">
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Treatment provided and Doctors here are really effective!
 									</p>
 								</div>
 								<div class="single-feedback-carusel">
 									<img src="{% static 'img/r1.png' %}" alt="">
 									<div class="title d-flex flex-row">
-										<h4 class="text-white pb-10">Fannie Rowe</h4>
+										<h4 class="text-white pb-10">Yash Shah</h4>
 										<div class="star">
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
@@ -395,7 +370,7 @@
 										</div>										
 									</div>
 									<p class="text-white">
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Absolutely best clinic site ever....Just go for it!
 									</p>
 								</div>																
 							</div>
@@ -405,7 +380,7 @@
 			</section>
 			<!-- End feedback Area -->	
 
-		    <!-- Start brands Area -->
+		    <!-- Start brands Area 
 		    <section class="brands-area">
 		        <div class="container">
 		            <div class="brand-wrap section-gap">
@@ -429,7 +404,7 @@
 		            </div>
 		        </div>
 		    </section>
-		    <!-- End brands Area -->
+		    End brands Area -->
 	
 			<!-- Start recent-blog Area -->
 			<section class="recent-blog-area section-gap">
@@ -438,7 +413,7 @@
 						<div class="col-md-7 pb-60 header-text">
 							<h1>Our Recent Blogs</h1>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.
+								Review our blogs here!
 							</p>
 						</div>
 					</div>
@@ -448,20 +423,17 @@
 								<img class="f-img img-fluid mx-auto" src="{% static 'img/b1.jpg' %}" alt="">	
 							</div>						
 							<a href="#">
-								<h4>Portable Fashion for women</h4>
+								<h4>Asthma and Anxiety-a dangerous mix in kids</h4>
 							</a>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-							</p>
 							<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
 								<div>
-									<img class="img-fluid" src="{% static 'img/user.png' %}" alt="">
+									<img class="img-fluid" src="" alt="">
 									<a href="#"><span>Mark Wiens</span></a>
 								</div>
 								<div class="meta">
 									13th Dec
-									<span class="lnr lnr-heart"></span> 15
-									<span class="lnr lnr-bubble"></span> 04
+									<span class="lnr lnr-heart"></span> 765
+									<span class="lnr lnr-bubble"></span> 98
 								</div>
 							</div>								
 						</div>
@@ -470,20 +442,17 @@
 								<img class="f-img img-fluid mx-auto" src="{% static 'img/b2.jpg' %}" alt="">	
 							</div>						
 							<a href="#">
-								<h4>Summer ware are coming</h4>
+								<h4>Chronic diarrhea linked to obesity</h4>
 							</a>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-							</p>
 							<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
 								<div>
-									<img class="img-fluid" src="{% static 'img/user.png' %}" alt="">
-									<a href="#"><span>Mark Wiens</span></a>
+									<img class="img-fluid" src="" alt="">
+									<a href="#"><span>Mark Zuckerberg</span></a>
 								</div>
 								<div class="meta">
-									13th Dec
-									<span class="lnr lnr-heart"></span> 15
-									<span class="lnr lnr-bubble"></span> 04
+									21st April
+									<span class="lnr lnr-heart"></span> 4213
+									<span class="lnr lnr-bubble"></span> 65
 								</div>
 							</div>								
 						</div>
@@ -492,20 +461,17 @@
 								<img class="f-img img-fluid mx-auto" src="{% static 'img/b3.jpg' %}" alt="">	
 							</div>						
 							<a href="#">
-								<h4>Summer ware are coming</h4>
+								<h4>Chroic diseases spread due to heavy rains</h4>
 							</a>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea.
-							</p>
 							<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
 								<div>
-									<img class="img-fluid" src="{% static 'img/user.png' %}" alt="">
-									<a href="#"><span>Mark Wiens</span></a>
+									<img class="img-fluid" src="" alt="">
+									<a href="#"><span>Bill Gates</span></a>
 								</div>
 								<div class="meta">
-									13th Dec
-									<span class="lnr lnr-heart"></span> 15
-									<span class="lnr lnr-bubble"></span> 04
+									7th July
+									<span class="lnr lnr-heart"></span> 156
+									<span class="lnr lnr-bubble"></span> 23
 								</div>
 							</div>								
 						</div>																
@@ -520,12 +486,12 @@
 					<div class="row">
 						<div class="col-lg-2  col-md-6">
 							<div class="single-footer-widget">
-								<h6>Top Products</h6>
+								<h6>Top Doctors</h6>
 								<ul class="footer-nav">
-									<li><a href="#">Managed Website</a></li>
-									<li><a href="#">Manage Reputation</a></li>
-									<li><a href="#">Power Tools</a></li>
-									<li><a href="#">Marketing Service</a></li>
+									<li><a href="#">Dr.Vikas Javdekar</a></li>
+									<li><a href="#">Dr.Joshi</a></li>
+									<li><a href="#">Dr.Shama Deshpande</a></li>
+									<li><a href="#">Dr.A P J Abdul Kalam</a></li>
 								</ul>
 							</div>
 						</div>
@@ -533,10 +499,10 @@
 							<div class="single-footer-widget mail-chimp">
 								<h6 class="mb-20">Contact Us</h6>
 								<p>
-									56/8, Santa bullevard, Rocky beach, San fransisco, Los angeles, USA
+									PVG COET, Sahkarnagar, Pune
 								</p>
-								<h3>012-6532-568-9746</h3>
-								<h3>012-6532-568-97468</h3>
+								<h3>+91 81374-91763</h3>
+								<h3>+91 95135-87350</h3>
 							</div>
 						</div>							
 						<div class="col-lg-6  col-md-12">
