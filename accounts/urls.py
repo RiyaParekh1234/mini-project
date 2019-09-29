@@ -12,10 +12,7 @@ urlpatterns = [
     path('blog-home',views.blog_home,name="blog-home"),
     path('blog-single',views.blog_single,name="blog-single"),
     path('login_success',views.login_success,name="log_success"),
-    #path('p_next',views.register,name="register")
     path('logout',views.p_logout,name="logout"),
-    #path('patient',views.patient,name="patient")
-    #path('doctor',views.doctor,name="doctor"),
 ]
 urlpatterns += [
     url('index_reg',views.register,name="register"),
