@@ -15,6 +15,7 @@ urlpatterns = [
     #path('p_next',views.register,name="register")
     path('logout',views.p_logout,name="logout"),
     #path('patient',views.patient,name="patient")
+    #path('doctor',views.doctor,name="doctor"),
 ]
 urlpatterns += [
     url('index_reg',views.register,name="register"),

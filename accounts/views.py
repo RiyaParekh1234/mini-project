@@ -74,7 +74,11 @@ def login(request):
     
     return render(request,'sign_in.html') 
 
-    
+'''def doctor(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    if request.method == 'POST':
+'''
 
 def p_next(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
@@ -112,13 +116,15 @@ def register(request):
         dob = request.POST['dob']
         phno = int(request.POST['phone'])
 
-        query = 'insert into person(id,prof,usrname,addr,emailid,id_p,gender,dob,phno) values (1,"' + prof + '","' + usrname + '","' + addr + '","' + emailid + '",' + str(id_p) + ',"' + gen + '","'+ dob + '",' + str(phno)+')'
+        query = 'insert into person(id,prof,usrname,addr,emailid,id_p,gender,dob,phno) values (99,"' + prof + '","' + usrname + '","' + addr + '","' + emailid + '",' + str(id_p) + ',"' + gen + '","'+ dob + '",' + str(phno)+')'
         mycursor.execute(query,())
         conn.commit()
         conn.close()
         request.session["email"] = emailid
         request.session["work"] = prof
         request.session["usr"] = usrname
+        #if prof == 'patient':
+         #   return redirect('/p_next')
         return redirect('/p_next')
     else:
         return render(request,'index_reg.html')
