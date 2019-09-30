@@ -85,8 +85,8 @@ def p_next(request):
         med = request.POST['med']
         pas1 = request.POST['pass1']
         pas2 = request.POST['pass2']
-
-        query1 = 'insert into patient values (NULL,"' + ht + '","' + wt + '","' + med + '")'
+        user = request.session["usr"]
+        query1 = 'insert into patient(id,ht,wt,med_history) values ((select id from person where usrname="'+user+'"),"' + ht + '","' + wt + '","' + med + '")'
         query2 = "update person set pswd1 ='"+pas1+"',pswd2 = '"+pas2+"' where emailid = '" + request.session["email"] + "' "  
         
         mycursor.execute(query1,())
@@ -112,12 +112,11 @@ def register(request):
         dob = request.POST['dob']
         phno = int(request.POST['phone'])
 
-        query = 'insert into person(id,prof,usrname,addr,emailid,id_p,gender,dob,phno) values (101,"' + prof + '","' + usrname + '","' + addr + '","' + emailid + '",' + str(id_p) + ',"' + gen + '","'+ dob + '",' + str(phno)+')'
+        query = 'insert into person(id,prof,usrname,addr,emailid,id_p,gender,dob,phno) values (id,"' + prof + '","' + usrname + '","' + addr + '","' + emailid + '",' + str(id_p) + ',"' + gen + '","'+ dob + '",' + str(phno)+')'
         mycursor.execute(query,())
         conn.commit()
         conn.close()
         request.session["email"] = emailid
-        request.session["work"] = prof
         request.session["usr"] = usrname
         return redirect('/p_next')
     else:

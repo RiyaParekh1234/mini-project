@@ -27,6 +27,117 @@
     <!-- Main CSS-->
     <link href="{% static 'css_register/main.css' %}" rel="stylesheet" media="all">
 </head>
+<script>
+    function validate(){
+        var prof=document.forms["form"]["profession"].value;
+        if(prof=="")
+        {
+            alert("Please choose your profession!");
+            return false;
+        }
+        var user=document.forms["form"]["usrn"].value;
+        if(user=="")
+        {
+            alert("Enter username!");
+            return false;
+        }
+        else if(!isNaN(user))
+        {
+            alert("Enter characters only for username!");
+            return false;
+        }
+        var addr=document.forms["form"]["addr"].value;
+        if(addr=="")
+        {
+            alert("Enter address!!");
+            return false;
+        }
+        var mail=document.forms["form"]["email"].value;
+        var mail_val=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(mail=="")
+        {
+            alert("Enter email address!");
+            return false;
+        }
+        else if(!mail_val.test(mail))
+        {
+            alert("Invalid email!");
+            return false;
+        }
+        var proof=document.forms["form"]["id_p"].value;
+        var p_num=document.getElementsByName('id_p');
+        var check_p;
+        if(proof=="")
+        {
+            alert("Please select one ID proof!");
+            return false;
+        }
+        for(i=0;i<p_num.length;i++)
+        {
+            if(p_num[i].checked)
+            {
+                check_p=p_num[i].value;
+                break;
+            }
+        }
+        var proof_text=document.forms["form"]["id_proof"].value;
+        if(proof_text=="")
+        {
+            {
+                alert("Please enter " +check_p+ " number!");
+                return false;
+            }
+        }
+        else if(check_p=="aadhar")
+        {
+            if(proof_text.length!=12)
+            {
+                alert("Enter correct length of Aadhar number");
+                return false;
+            }
+        }
+        else if(check_p=="pan")
+        {
+            if(proof_text.length!=10)
+            {
+                alert("Enter correct length of Pan number");
+                return false;
+            }
+        }
+        var gen=document.forms["form"]["gender"].value;
+        if(gen=="")
+        {
+            alert("Please select your gender!");
+            return false;
+        }
+        var birth_date=document.forms["form"]["dob"].value;
+        if(birth_date=="")
+        {
+            alert("Please select your date of birth!");
+            return false;
+        }
+        var phno=document.forms["form"]["phone"].value;
+        if(phno=="")
+        {
+            alert("Please enter your phone number!");
+            return false;
+        }
+        else if(isNaN(phno))
+        {
+            alert("Please enter only numbers!");
+            return false;
+        }
+        else if(phno.length!=10)
+        {
+            alert("Invalid phone number!");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+</script>
 <body>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
@@ -35,7 +146,7 @@
                     <h2 class="title">Clinic Registration Form</h2>
                 </div>
                 <div class="card-body">
-                    <form  method="post">
+                    <form  name="form" method="post">
                         {% csrf_token %}
                         <div class="form-row m-b-55">
                             <div class="name">Choose Your post:</div>
@@ -47,7 +158,6 @@
                                                     <option placeholder="Select"></option>
                                                     <option value="Patient">Patient</option>
                                                     <option value="Doctor">Doctor</option>
-                                                    <option value="Receptionist">Receptionist</option>
                                                 </select>                    
                                             </div>
                                         </div>
@@ -96,7 +206,7 @@
                                 <div class="input-group">
                                     <input type="radio" name="id_p" value="aadhar">Adhaar card<br>
                                     <input type="radio" name="id_p" value="pan">PAN card<br>
-                                    <input class="input--style-5" type="number" name="id_proof">
+                                    <input class="input--style-5" type="tel" name="id_proof">
                                     <label class="label--desc">Enter Number</label>
                                 </div>
                             </div>
@@ -108,8 +218,8 @@
                                     <input type="radio" name="gender" value="male">Male<br>
                                     <input type="radio" name="gender" value="female">Female<br>
                                     <input type="radio" name="gender" value="others">Others<br>
-                                    <input class="input--style-5" type="text" name="gender">
-                                    <label class="label--desc">Enter Gender credentials</label>
+                                    <!--<input class="input--style-5" type="text" name="gender">
+                                    <label class="label--desc">Enter Gender credentials</label>-->
                                 </div>
                             </div>
                         </div>          
@@ -129,7 +239,7 @@
                                     <div class="col-3"></div>
                                     <div class="col-9">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="phone">
+                                            <input class="input--style-5" type="tel" name="phone">
                                             <label class="label--desc">Phone Number</label>
                                         </div>
                                     </div>
@@ -143,7 +253,7 @@
                         </div>
                         <div class="form-row p-t-20"></div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">NEXT</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit" onclick="return validate()">NEXT</button>
                         </div>
                     </form>
                 </div>

@@ -26,7 +26,54 @@
     <!-- Main CSS-->
     <link href="{% static 'css_register/main.css' %}" rel="stylesheet" media="all">
 </head>
-
+<script>
+    function validate(){
+        var weight=document.forms["form"]["wt"].value;
+        if(weight=="")
+        {
+            alert("Enter your weight!");
+            return false;
+        }
+        else if(isNaN(weight))
+        {
+            alert("Enter only integers!");
+            return false;
+        }
+        var height=document.forms["form"]["ht"].value;
+        if(height=="")
+        {
+            alert("Enter your height!");
+            return false;
+        }
+        else if(isNaN(height))
+        {
+            alert("Enter only integers!");
+            return false;
+        }
+        var medical=document.forms["form"]["med"].value;
+        if(medical=="")
+        {
+            alert("Please write none if you don't have any medical history!");
+            return false;
+        }
+        var pswd1=document.forms["form"]["pass1"].value;
+        if(pswd1.length<8)
+        {
+            alert("Password should atleast contain 8 characters!");
+            return false;
+        }
+        var pswd2=document.forms["form"]["pass2"].value;
+        if(pswd1!=pswd2)
+        {
+            alert("Password doesn't match!");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+</script>
 <body>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
@@ -35,7 +82,7 @@
                     <h2 class="title">Patient Registration Form</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" name="form">
                         {% csrf_token %}
                         <div class="form-row m-b-55">
                             <div class="name">Weight:</div>
@@ -98,7 +145,7 @@
                             
                         </div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit" onclick="login_success">DONE</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit" onclick="return validate()">DONE</button>
                         </div>
                     </form>
                 </div>
