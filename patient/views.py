@@ -14,8 +14,7 @@ import getpass
 # Create your views here.
 
 def patient(request):
-    uid = request.session["user"]
-    print(uid)
+    
     return render(request,'patient/patient.html')    
 
 def appointment(request):
