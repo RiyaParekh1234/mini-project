@@ -51,7 +51,7 @@ def login(request):
     if request.method == 'POST':
         usrn = request.POST['usrname']
         pass1 = request.POST['pass']
-        query="select usrname,pswd1 from person"
+        query="select usrname,pswd1,id from person"
         mycursor.execute(query)
         result=mycursor.fetchall()
         for res1 in result:
@@ -59,22 +59,27 @@ def login(request):
                 print("user accepted!")
                 if pass1 in res1[1]:
                     print("Password accepted")
+                    request.session["user"] = usrn
+                    request.session["password"] = pass1
+                    request.session["uid"] = res1[2]
+                    query1="update person set status='T' where usrname='"+usrn+"' and pswd1='"+pass1+"'"
+                    mycursor.execute(query1)
+                    conn.commit()
+                    conn.close()
                     return redirect('/patient')
                 else:
                     print("Incorrect password")
             else:
                 print("Incorrect user")
 
-            '''
+        '''
         query = 'insert into accounts_signin values(%s,%s)'
         args = (usrn,pass1)
         mycursor.execute(query,args)'''
-        conn.commit()
-        conn.close()
-    
-    return render(request,'sign_in.html') 
-
-    
+        
+    else:
+        return render(request,'sign_in.html') 
+ 
 
 def p_next(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')

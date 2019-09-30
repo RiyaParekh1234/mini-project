@@ -2359,6 +2359,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   background: -moz-linear-gradient(90deg, #64bb00 0%, #abe500 100%);
   background: -webkit-linear-gradient(90deg, #64bb00 0%, #abe500 100%);
   background: -ms-linear-gradient(90deg, #64bb00 0%, #abe500 100%);
+  
 }
 
 .p1-gradient-color, .header-top .header-top-left a .lnr, .single-facilities .lnr, .single-facilities:hover h4 {
