@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
-    path('login/',include('login.urls')),
+    
     path('admin/', admin.site.urls),
     path('',include('accounts.urls')),
      path('patient/',include('patient.urls')),
+     path('doctor/',include('doctor.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()

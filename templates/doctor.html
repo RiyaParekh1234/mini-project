@@ -1,4 +1,6 @@
+
 {% load static %}
+
 <!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 	<head>
@@ -42,7 +44,7 @@
 				  			<a href="{% static 'mailto:support@colorlib.com' %}"><span class="lnr lnr-envelope"></span> <span class="text"><span class="text">ssrr1999@gmail.com</span></span></a>			
 			  			</div>
 			  			<div class="col-lg-6 col-sm-6 col-8 header-top-right">
-							<a href="sign_in" class="primary-btn text-uppercase">Book Appointment</a>
+							<a href="sign_in" class="primary-btn text-uppercase">Add Receptionist</a>
 			  			</div>
 			  		</div>			  						
 	  			</div>
@@ -78,10 +80,9 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-8 col-md-12">
 							<h1>
-								We Care for Your Health
-								Every Moment		
+								It is my duty to treat everyone.		
 							</h1>
-							<a href="#" class="primary-btn text-uppercase">Get Started</a>
+							<a href="#" class="primary-btn text-uppercase">Lets Treat!</a>
 						</div>										
 					</div>
 				</div>					
@@ -99,17 +100,19 @@
 							<ul class="time-list">
 								<li class="d-flex justify-content-between">
 									<span>Monday-Friday</span>
-									<span>08.00 am - 10.00 pm</span>
+									<span>
+										<!--{% block content %}
+												{{ time }}
+										{% endblock %}</span> 
+
+										want to print timing from doctor table 
+										-->
+
+										9:00AM to 5:00PM
 								</li>
-								<li class="d-flex justify-content-between">
-									<span>Saturday</span>
-									<span>08.00 am - 10.00 pm</span>
-								</li>
-								<li class="d-flex justify-content-between">
-									<span>Sunday</span>
-									<span>08.00 am - 10.00 pm</span>
-								</li>																
+																								
 							</ul>
+							<a href="s_hours" class="primary-btn text-uppercase">Update Hours</a>
 						</div><!--
 						<div class="col-lg-6 col-md-6 appointment-right pt-60 pb-60">
 							<form class="form-wrap" action="#">
