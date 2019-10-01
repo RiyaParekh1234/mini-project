@@ -106,21 +106,22 @@ def d_next(request):
     else:
         return render(request,'d_next.html') 
 
-def s_hours(request):
+
+def add_recep(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     if request.method == 'POST':
-        query="select usrname from person p,doctor d where p.id=d.id"
-        mycursor.execute(query)
-        result=mycursor.fetchone()
-        newtime = request.POST['time']
-        query1 = "update doctor set timing = '"+ newtime +"' where id=(select id from person where usrname='"+ result[0] +"')"
+        workhrs = request.POST['wrk_hrs']
+        salary = request.POST['salary']
+        user = request.session["usr"]
+        query1 = 'insert into receptionist(id,wrk_hrs,salary) values ((select id from person where usrname="'+user+'"),"' + workhrs + '","' + salary + '")'  
         mycursor.execute(query1,())
         conn.commit()
         conn.close()
-        return redirect('/doctor')
+        return redirect('receptionist.html')
     else:
-        return render(request,'s_hours.html')
+        return render(request,'add_recep.html') 
+
 
 
 def p_next(request):
@@ -142,8 +143,7 @@ def p_next(request):
         conn.close()
         request.session["pswd"] = pas1
         return redirect('/')
-    else:
-        
+    else:    
         return render(request,'p_next.html') 
         
 def register(request):
@@ -166,7 +166,8 @@ def register(request):
         conn.close()
         request.session["email"] = emailid
         request.session["usr"] = usrname
-        if prof == 'patient':
+        
+        if prof == 'Patient':
             return redirect('/p_next')
         else:
             return redirect('/d_next')
@@ -180,6 +181,10 @@ def login_success(request):
     return render(request,'patient.html')    
 '''
 def p_logout(request):
+    request.session.flush()
+    return redirect('index.html')
+
+def d_logout(request):
     request.session.flush()
     return redirect('index.html')
 

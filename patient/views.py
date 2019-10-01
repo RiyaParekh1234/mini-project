@@ -72,11 +72,12 @@ def bill(request):
 
 
 def p_logout(request):
-    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
-    mycursor = conn.cursor()
-    query1="update person set status='F' where status='T' "
-    mycursor.execute(query1,())
-    conn.commit()
-    conn.close()
+    #conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    #mycursor = conn.cursor()
+    #query1="update person set status='F' where status='T' "
+    #mycursor.execute(query1,())
+    #conn.commit()
+    #conn.close()
     request.session.flush()
     return redirect('/')
+

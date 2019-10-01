@@ -17,6 +17,7 @@ urlpatterns += [
     url('index_reg',views.register,name="register"),
     url('p_next',views.p_next,name="p_next"),
     url('d_next',views.d_next,name="d_next"),
-    url('s_hours',views.s_hours,name="s_hours"),
+    url('add_recep',views.add_recep,name="add_recep"),
+    
 ]
 urlpatterns += staticfiles_urlpatterns()
