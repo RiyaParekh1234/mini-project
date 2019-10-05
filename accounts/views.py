@@ -63,7 +63,9 @@ def login(request):
                     if res1[0] == 'Patient':
                        return redirect('/patient')
                     elif res1[0] == 'Doctor':
-                       return redirect('/doctor')   
+                       return redirect('/doctor')  
+                    elif res1[0] == 'Receptionist': 
+                       return redirect('/recept')
                 else:
                     print("Incorrect password")
             else:
@@ -195,3 +197,6 @@ def blog_home(request):
 
 def blog_single(request):
     return render(request,'blog-single.html')
+
+def recept_login(request):
+    return render(request,'recept/index_recept.html')

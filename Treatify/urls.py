@@ -22,5 +22,6 @@ urlpatterns = [
     path('',include('accounts.urls')),
      path('patient/',include('patient.urls')),
      path('doctor/',include('doctor.urls')),
+     path('recept/',include('recept.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()

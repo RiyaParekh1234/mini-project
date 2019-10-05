@@ -19,5 +19,6 @@ urlpatterns += [
     url('p_next',views.p_next,name="p_next"),
     url('d_next',views.d_next,name="d_next"),
     url('s_hours',views.s_hours,name="s_hours"),
+    url('index_recept',views.recept_login,name="recept_login"),
 ]
 urlpatterns += staticfiles_urlpatterns()
