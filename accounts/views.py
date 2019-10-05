@@ -51,7 +51,7 @@ def login(request):
     if request.method == 'POST':
         usrn = request.POST['usrname']
         pass1 = request.POST['pass']
-        query="select prof,usrname,pswd1 from person"
+        query="select prof,usrname,pswd1,id from person"
         mycursor.execute(query)
         result=mycursor.fetchall()
         for res1 in result:
@@ -59,7 +59,9 @@ def login(request):
                 print("user accepted!")
                 if pass1 in res1[2]:
                     print("Password accepted")
-                    
+                    request.session["user"] = usrn	                   
+                    request.session["password"] = pass1	
+                    request.session["uid"] = res1[3]
                     if res1[0] == 'Patient':
                        return redirect('/patient')
                     elif res1[0] == 'Doctor':
@@ -71,7 +73,7 @@ def login(request):
             else:
                 print("Incorrect user")
 
-            '''
+        '''
         query = 'insert into accounts_signin values(%s,%s)'
         args = (usrn,pass1)
         mycursor.execute(query,args)'''
@@ -95,7 +97,7 @@ def d_next(request):
         pas2 = request.POST['pass2']
         user = request.session["usr"]
         query1 = 'insert into doctor(id,lic_no,reg_no,experience,degree,spltion,timing,fee) values ((select id from person where usrname="'+user+'"),"' + lic_no + '","' + reg_no + '","' + experience + '","' + degree +'","' + spltion +'","' + timing +'","' + fee +'")'
-        query2 = "update person set pswd1 ='"+pas1+"',pswd2 = '"+pas2+"' where emailid = '" + request.session["email"] + "' "  
+        query2 = "update person set pswd1   ='"+pas1+"',pswd2 = '"+pas2+"' where emailid = '" + request.session["email"] + "' "  
         
         mycursor.execute(query1,())
         mycursor.execute(query2,())
@@ -106,21 +108,22 @@ def d_next(request):
     else:
         return render(request,'d_next.html') 
 
-def s_hours(request):
+
+def add_recep(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     if request.method == 'POST':
-        query="select usrname from person p,doctor d where p.id=d.id"
-        mycursor.execute(query)
-        result=mycursor.fetchone()
-        newtime = request.POST['time']
-        query1 = "update doctor set timing = '"+ newtime +"' where id=(select id from person where usrname='"+ result[0] +"')"
+        workhrs = request.POST['wrk_hrs']
+        salary = request.POST['salary']
+        user = request.session["usr"]
+        query1 = 'insert into receptionist(id,wrk_hrs,salary) values ((select id from person where usrname="'+user+'"),"' + workhrs + '","' + salary + '")'  
         mycursor.execute(query1,())
         conn.commit()
         conn.close()
-        return redirect('/doctor')
+        return redirect('receptionist.html')
     else:
-        return render(request,'s_hours.html')
+        return render(request,'add_recep.html') 
+
 
 
 def p_next(request):
@@ -142,8 +145,7 @@ def p_next(request):
         conn.close()
         request.session["pswd"] = pas1
         return redirect('/')
-    else:
-        
+    else:    
         return render(request,'p_next.html') 
         
 def register(request):
@@ -166,7 +168,8 @@ def register(request):
         conn.close()
         request.session["email"] = emailid
         request.session["usr"] = usrname
-        if prof == 'patient':
+        
+        if prof == 'Patient':
             return redirect('/p_next')
         else:
             return redirect('/d_next')
@@ -180,8 +183,12 @@ def login_success(request):
     return render(request,'patient.html')    
 '''
 def p_logout(request):
-    logout(request)
-    return redirect('/')
+    request.session.flush()
+    return redirect('index.html')
+
+def d_logout(request):
+    request.session.flush()
+    return redirect('index.html')
 
 def index(request):
     return render(request,'index.html')

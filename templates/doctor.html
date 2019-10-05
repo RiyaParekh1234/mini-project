@@ -44,7 +44,11 @@
 				  			<a href="{% static 'mailto:support@colorlib.com' %}"><span class="lnr lnr-envelope"></span> <span class="text"><span class="text">ssrr1999@gmail.com</span></span></a>			
 			  			</div>
 			  			<div class="col-lg-6 col-sm-6 col-8 header-top-right">
+<<<<<<< HEAD
 							<a href="recep_reg" class="primary-btn text-uppercase">Add Receptionist</a>
+=======
+							<a href="add_recep" class="primary-btn text-uppercase">Add Receptionist</a>
+>>>>>>> 3807c72fe443d8e481b5e60fc2508cf93d3668ff
 			  			</div>
 			  		</div>			  						
 	  			</div>
@@ -66,7 +70,7 @@
 			          </li>			          		          
 					  <li><a href="contact">Contact</a></li>
 					  <li><a href="index_reg">Register</a></li>
-					  <li><a href="sign_in">Login</a></li>
+					  <li><a href="d_logout">Logout</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		
 		    	</div>
@@ -82,7 +86,7 @@
 							<h1>
 								It is my duty to treat everyone.		
 							</h1>
-							<a href="#" class="primary-btn text-uppercase">Lets Treat!</a>
+							<a href="treat_list" class="primary-btn text-uppercase">Lets Treat!</a>
 						</div>										
 					</div>
 				</div>					
@@ -101,9 +105,10 @@
 								<li class="d-flex justify-content-between">
 									<span>Monday-Friday</span>
 									<span>
-										<!--{% block content %}
-												{{ time }}
-										{% endblock %}</span> 
+										{% block content %}
+												{{ timing }}
+										{% endblock %}</span>
+										<!-- 
 
 										want to print timing from doctor table 
 										-->
@@ -113,6 +118,8 @@
 																								
 							</ul>
 							<a href="s_hours" class="primary-btn text-uppercase">Update Hours</a>
+							<br><br>
+							<a href="d_bill" style="align-content: center;" class="primary-btn text-uppercase">Bill</a>
 						</div><!--
 						<div class="col-lg-6 col-md-6 appointment-right pt-60 pb-60">
 							<form class="form-wrap" action="#">
