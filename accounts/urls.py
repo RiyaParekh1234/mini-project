@@ -17,12 +17,7 @@ urlpatterns += [
     url('index_reg',views.register,name="register"),
     url('p_next',views.p_next,name="p_next"),
     url('d_next',views.d_next,name="d_next"),
-<<<<<<< HEAD
-    url('s_hours',views.s_hours,name="s_hours"),
     url('index_recept',views.recept_login,name="recept_login"),
-=======
-    url('add_recep',views.add_recep,name="add_recep"),
-    
->>>>>>> 3807c72fe443d8e481b5e60fc2508cf93d3668ff
+    url('change_pass',views.change_pass,name="change_pass"),
 ]
 urlpatterns += staticfiles_urlpatterns()

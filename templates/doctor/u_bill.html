@@ -16,6 +16,12 @@
         Enter Diagnosis/Medicines:<br><br>
         <textarea name="diag" rows="7" cols="50" class="mytext"> </textarea>  
         <br><br>
+        
+        {% if result is -1 %}
+        <script>
+          alert("ERROR!");
+        </script>
+          {% endif %}
         <button type="submit">OKAY</button>
     </form>
     

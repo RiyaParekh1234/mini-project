@@ -50,22 +50,14 @@
 		    <div class="container main-menu">
 		    	<div class="row align-items-center justify-content-between d-flex">
 			      <div id="logo">
-			        <a href="{% static 'index.html' %}"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+			        <a href="{% static 'index.html' %}"><img src="{% static 'img/lg.png' %}" width="90" height="70" alt="" title="" /></a>
 			      </div>
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
-			          <li><a href="#">Home</a></li>
-			          <li><a href="about">About</a></li>
-			          <li class="menu-has-children"><a href="">Blog</a>
-			            <ul>
-			              <li><a href="blog-home">Blog Home</a></li>
-			              <li><a href="blog-single">Blog Single</a></li>
-			            </ul>
-			          </li>			          		          
-					  <li><a href="bill_final">Bills</a></li>
+			          <li><a href="/index_recept">Home</a></li>		          		          
+					  <li><a href="show_bill">Bills</a></li>
                       <li><a href="view_appoint">Appointments</a></li>
-                      <li><a href="">Doctor Schedule</a></li>
-					  <li><a href="">Logout</a></li>
+					  <li><a href="/">Logout</a></li>
 					</ul>
 			      </nav><!-- #nav-menu-container -->		    		
 		    	</div>
@@ -79,10 +71,9 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-8 col-md-12">
 							<h1>
-								We Care for Your Health
-								Every Moment		
-							</h1>
-							<a href="#" class="primary-btn text-uppercase">Get Started</a>
+								Welcome Receptionist!	
+							</h1><br><br>
+							<a href="view_appoint" class="primary-btn text-uppercase">Schedule Appointments</a>
 						</div>										
 					</div>
 				</div>					
@@ -97,21 +88,10 @@
 							<h1><br><br>
 								Servicing Hours
 							</h1>
-							<ul class="time-list">
-								<li class="d-flex justify-content-between">
-									<span>Monday-Friday</span>
-									<span>08.00 am - 10.00 pm</span>
-								</li>
-								<li class="d-flex justify-content-between">
-									<span>Saturday</span>
-									<span>08.00 am - 10.00 pm</span>
-								</li>
-								<li class="d-flex justify-content-between">
-									<span>Sunday</span>
-									<span>08.00 am - 10.00 pm</span>
-								</li>																
-							</ul>
-						</div><!--
+										{% block content %}
+												{{ time }}
+										{% endblock %}
+							</div><!--
 						<div class="col-lg-6 col-md-6 appointment-right pt-60 pb-60">
 							<form class="form-wrap" action="#">
 								<h3 class="pb-20 text-center mb-30">Book an Appointment</h3>		

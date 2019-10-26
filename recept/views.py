@@ -16,15 +16,15 @@ def bill_final(request):
     if request.method == 'POST':
         usrname = request.POST['usrname']
         b_amt = request.POST['b_amt']
-        query1 = 'select id from person where usrname="'+usrname+'"'
+        query1 = 'select id from person where usrname="'+usrname+'" and prof="Patient"'
         mycursor.execute(query1)
         h_id = mycursor.fetchone()
-        query = "update bill set total_fees='"+b_amt+"' where id = '"+ str(h_id[0])+"' "
+        query = "update bill set amt='"+b_amt+"' where id = '"+ str(h_id[0])+"' "
         mycursor.execute(query)
 
         conn.commit()
         conn.close()
-        return redirect('/')
+        return redirect('/recept')
     else:
         return render(request,'recept/bill_final.html')
 
@@ -38,7 +38,13 @@ def bill_final(request):
     return render(request,'recept/del_success.html')'''
 
 def index_recept(request):
-    return render(request,'recept/index_recept.html')
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    uid = request.session['uid']
+    query1 = "select timing from doctor where id = '" + str(uid) +"'"
+    mycursor.execute(query1,())
+    time = mycursor.fetchone()
+    return render(request,'recept/index_recept.html',{'time':time})
 
 def view_appoint(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
@@ -46,5 +52,15 @@ def view_appoint(request):
     query="select * from appoint"
     mycursor.execute(query)
     result=mycursor.fetchall()
-        
     return render(request,'recept/view_appoint.html',{'result':result})
+
+def show_bill(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    #uid=request.session["uid"]
+    query="select * from bill"
+    mycursor.execute(query)
+    res=mycursor.fetchall()
+    conn.commit()
+    conn.close()
+    return render(request,'recept/view_bills.html',{'result':res})
