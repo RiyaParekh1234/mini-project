@@ -44,11 +44,7 @@
 				  			<a href="{% static 'mailto:support@colorlib.com' %}"><span class="lnr lnr-envelope"></span> <span class="text"><span class="text">ssrr1999@gmail.com</span></span></a>			
 			  			</div>
 			  			<div class="col-lg-6 col-sm-6 col-8 header-top-right">
-<<<<<<< HEAD
 							<a href="recep_reg" class="primary-btn text-uppercase">Add Receptionist</a>
-=======
-							<a href="add_recep" class="primary-btn text-uppercase">Add Receptionist</a>
->>>>>>> 3807c72fe443d8e481b5e60fc2508cf93d3668ff
 			  			</div>
 			  		</div>			  						
 	  			</div>
@@ -56,27 +52,23 @@
 		    <div class="container main-menu">
 		    	<div class="row align-items-center justify-content-between d-flex">
 			      <div id="logo">
-			        <a href="{% static 'index.html' %}"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+			        <a href="{% static 'index.html' %}"><img src="{% static 'img/lg.png' %}" height="90" width="120" alt="" title="" /></a>
 			      </div>
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
 			          <li><a href="#">Home</a></li>
-			          <li><a href="about">About</a></li>
 			          <li class="menu-has-children"><a href="">Blog</a>
 			            <ul>
 			              <li><a href="blog-home">Blog Home</a></li>
 			              <li><a href="blog-single">Blog Single</a></li>
 			            </ul>
 			          </li>			          		          
-					  <li><a href="contact">Contact</a></li>
-					  <li><a href="index_reg">Register</a></li>
 					  <li><a href="d_logout">Logout</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		
 		    	</div>
 		    </div>
 		  </header><!-- #header -->
-
 			<!-- start banner Area -->
 			<section class="banner-area relative" id="home">
 				<div class="overlay overlay-bg"></div>	
@@ -84,9 +76,11 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-8 col-md-12">
 							<h1>
-								It is my duty to treat everyone.		
-							</h1>
-							<a href="treat_list" class="primary-btn text-uppercase">Lets Treat!</a>
+								Welcome Doctor..!	<br><br>
+								It's My Duty to Treat Everyone.	
+							</h1><br>
+							
+							<a href="treat_list" class="primary-btn text-uppercase">Let's Treat!</a>
 						</div>										
 					</div>
 				</div>					
@@ -103,17 +97,16 @@
 							</h1>
 							<ul class="time-list">
 								<li class="d-flex justify-content-between">
-									<span>Monday-Friday</span>
+									<span><h2>Monday-Friday:</span>
 									<span>
 										{% block content %}
-												{{ timing }}
+												{{ time }}
 										{% endblock %}</span>
 										<!-- 
-
+									
 										want to print timing from doctor table 
 										-->
-
-										9:00AM to 5:00PM
+									</h2>
 								</li>
 																								
 							</ul>
@@ -249,72 +242,6 @@
 				</div>	
 			</section>
 			<!-- End offered-service Area -->
-		
-			<!-- Start team Area -->
-		    <section class="team-area section-gap">
-		        <div class="container">
-		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content pb-70 col-lg-7">
-		                    <div class="title text-center">
-		                        <h1 class="mb-10">Our Consultants</h1>
-		                        </div>
-		                </div>
-		            </div>
-		            <div class="row justify-content-center d-flex align-items-center">
-		                <div class="col-lg-3 col-md-6 single-team">
-		                    <div class="thumb">
-		                        <img class="img-fluid" src="{% static 'img/t1.jpg' %}" alt="">
-		                        <div class="align-items-end justify-content-center d-flex">
-									<div class="social-links">
-									</div>			                        	
-		                            <p>nirlajja</p>
-		                            <h4>Riya Parekh</h4>		                            
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-lg-3 col-md-6 single-team">
-		                    <div class="thumb">
-		                        <img class="img-fluid" src="{% static 'img/t2.jpg' %}" alt="">
-		                        <div class="align-items-end justify-content-center d-flex">
-									<div class="social-links">
-									</div>			                        	
-		                            <p>
-		                            	masum face var jau naka
-		                            </p>
-		                            <h4>Shreya Mahajan</h4>		                            
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-lg-3 col-md-6 single-team">
-		                    <div class="thumb">
-		                        <img class="img-fluid" src="{% static 'img/t3.jpg' %}" alt="">
-		                        <div class="align-items-end justify-content-center d-flex">
-									<div class="social-links">
-									</div>			                        	
-		                            <p>
-		                            	inappropriate behavior
-		                            </p>
-		                            <h4>Rashmi Mokashi</h4>		                            
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-lg-3 col-md-6 single-team">
-		                    <div class="thumb">
-		                        <img class="img-fluid" src="{% static 'img/t4.jpg' %}" alt="">
-		                        <div class="align-items-end justify-content-center d-flex">
-									<div class="social-links">
-									</div>			                        	
-		                            <p>
-										Team member	
-									</p>
-		                            <h4>Shreya Kajbaje</h4>		                            
-		                        </div>
-		                    </div>
-		                </div>		                		                		                
-		            </div>
-		        </div>
-		    </section>
-		    <!-- End team Area -->				
 						
 			<!-- Start feedback Area -->
 			<section class="feedback-area section-gap relative">

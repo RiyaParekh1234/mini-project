@@ -34,6 +34,11 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        body{
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,20 +63,19 @@
                     <h1><br><br>
                         Patient List
                     </h1>
-                                                                            
-                    <a href="#" class="primary-btn text-uppercase">Search</a>
-                    <a href="#" style="align-content: center;" class="primary-btn text-uppercase">    Delete</a>
+                    <input type="tel" placeholder="Search patient by id">                                                        
+                    <a href="treat_list" class="primary-btn text-uppercase">Search</a>
                     <h3>
                             <br><br>
-                    <table width=100%>
+                    <table id="tble" width="20" border="5" cellpadding="30">
                         <tr width=100%>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone no</th>
-                            <th>ht</th>
-                            <th>wt</th>
-                            <th>med_history</th>
+                            <th>Phone No</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Medical_history</th>
                         </tr>
                         {% for i in res2 %}    
                             <tr width=100%>   
@@ -85,7 +89,7 @@
                             </tr>    
                         {% endfor %}
                     </table>
-      
+                    
                     
 
                 </div>

@@ -69,14 +69,10 @@ def login(request):
                     elif res1[0] == 'Receptionist': 
                        return redirect('/recept')
                 else:
-                    print("Incorrect password")
+                    print("not accepted")
             else:
-                print("Incorrect user")
-
-        '''
-        query = 'insert into accounts_signin values(%s,%s)'
-        args = (usrn,pass1)
-        mycursor.execute(query,args)'''
+                #return render(request,'sign_in.html',{'result':-1})
+                print("not accepted")
         conn.commit()
         conn.close()
     
@@ -107,23 +103,6 @@ def d_next(request):
         return redirect('/')
     else:
         return render(request,'d_next.html') 
-
-
-def add_recep(request):
-    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
-    mycursor = conn.cursor()
-    if request.method == 'POST':
-        workhrs = request.POST['wrk_hrs']
-        salary = request.POST['salary']
-        user = request.session["usr"]
-        query1 = 'insert into receptionist(id,wrk_hrs,salary) values ((select id from person where usrname="'+user+'"),"' + workhrs + '","' + salary + '")'  
-        mycursor.execute(query1,())
-        conn.commit()
-        conn.close()
-        return redirect('receptionist.html')
-    else:
-        return render(request,'add_recep.html') 
-
 
 
 def p_next(request):
@@ -176,6 +155,23 @@ def register(request):
     else:
         return render(request,'index_reg.html')
 
+'''def s_hours(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    if request.method == 'POST':
+        query = 'select usrname from person p,doctor d where p.id=d.id'
+        mycursor.execute(query,())
+        result=mycursor.fetchone()
+        newtime=request.POST['time']
+        query1='update doctor set timing="'+newtime+'" where id=(select id from person where usrname="'+result[0]+'")'
+        mycursor.execute(query1,())
+        conn.commit()
+        conn.close()
+        return redirect('/doctor')
+    else:
+        return render(request,'s_hours.html')'''
+
+
 def login_success(request):
     return render(request,'login_success.html')
 
@@ -207,3 +203,20 @@ def blog_single(request):
 
 def recept_login(request):
     return render(request,'recept/index_recept.html')
+
+def change_pass(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    if request.method == 'POST':
+        user=request.POST['usrname']
+        mail=request.POST['pass']
+        pswd1=request.POST['pass1']
+        pswd2=request.POST['pass2']
+        query = 'update person set pswd1="'+pswd1+'",pswd2="'+pswd2+'" where usrname="'+user+'" and emailid="'+mail+'"'
+        mycursor.execute(query,())
+        #res=mycursor.fetchone()
+        conn.commit()
+        conn.close()
+        return redirect('/sign_in')
+    else:   
+        return render(request,'change_pass.html')

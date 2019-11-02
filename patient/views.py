@@ -14,8 +14,14 @@ import getpass
 # Create your views here.
 
 def patient(request):
-    
-    return render(request,'patient/patient.html')    
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    usrn = request.session["user"]
+    u_name = request.session['uid']
+    query = "select usrname from person where id = '" + str(u_name) + "'"
+    mycursor.execute(query,())
+    pt_name = mycursor.fetchone()
+    return render(request,'patient/patient.html',{'pt_name':pt_name[0]})    
 
 def appointment(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
@@ -29,46 +35,34 @@ def appointment(request):
         date = request.POST['date']
         time = request.POST['time']
 
-        query1 = 'insert into appoint values (NULL,"' + usrname + '","' + doctor + '","' + gen + '","' + phno + '","' + emailid + '","' + date + '","' + time + '")'
-        
+        query1 = 'insert into appoint values (a_id,(select id from person where usrname="'+usrname+'"),"' + usrname + '","' + doctor + '","' + gen + '","' + phno + '","' + emailid + '","' + date + '","' + time + '")'
         mycursor.execute(query1,())
         
         conn.commit()
         conn.close()
         
-        return redirect('/')
+        return redirect('/patient')
     else:
-       
         return render(request,'patient/appointment.html')
 
 
 def bill(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
-    '''
-    query1 = "select usrname from person where status='T'"
-    query2 = "select phno from person where status='T'"
-    query3 = "select emailid from person where status='T'"
-    mycursor.execute(query1,())
-    res1=mycursor.fetchall()
-    mycursor.execute(query2,())
-    res2=mycursor.fetchall()
-    mycursor.execute(query3,())
-    res3=mycursor.fetchall()
-    '''
     usrn = request.session["user"]
     u_id = request.session["uid"]
     query1 = "select phno,emailid from person where usrname = '" + request.session["user"] + "'"
-    query2 = "select * from bill where id = '" + str(u_id) + "' "
+    query2 = "select bill_id,doc_name,bill_dt,diag,amt,total_amt from bill where id = '" + str(u_id) + "'"
+    
     mycursor.execute(query1,())
     res1=mycursor.fetchall()
-
+    
     mycursor.execute(query2,())
     res2=mycursor.fetchall()
     
     conn.commit()
     conn.close()
-    return render(request,'patient/bill.html',{'usrname':usrn,'phno': res1[0][0],'emailid': res1[0][1],'date':res2[0][3],'bill_id':res2[0][0],'doc':res2[0][2],'diag':res2[0][4],'amt':res2[0][5],'tot':res2[0][7]})    
+    return render(request,'patient/bill.html',{'usrname':usrn,'phno': res1[0][0],'emailid': res1[0][1],'date':res2[0][2],'bill_id':res2[0][0],'doc':res2[0][1],'diag':res2[0][3],'amt':res2[0][4],'tot':res2[0][5]})    
 
 
 def p_logout(request):
@@ -81,3 +75,31 @@ def p_logout(request):
     request.session.flush()
     return redirect('/')
 
+def del_bill(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    
+    u_id=request.session["uid"]
+    #query2= "delete from bill where bill_dt in (select min(bill_dt) from bill where id= '" + str(u_id) + "' ) "
+    #res3=mycursor.fetchall()
+    query2 = " delete from bill where id = '" + str(u_id) + "' " 
+    mycursor.execute(query2,())
+    conn.commit()
+    conn.close()
+    return render(request,'patient/patient.html')
+
+def view_bills(request):
+    conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
+    mycursor = conn.cursor()
+    uid=request.session["uid"]
+    
+    query1="select bill_id,bill_dt from bill where id='"+str(uid)+"'"
+    mycursor.execute(query1,())
+    res=mycursor.fetchall()
+    query2="select bill_id from bill where id='"+str(uid)+"'"
+    mycursor.execute(query2)
+    res1=mycursor.fetchall()
+    request.session["bills"]=res1
+    conn.commit()
+    conn.close()
+    return render(request,'patient/view_bills.html',{'result':res})

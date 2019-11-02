@@ -50,7 +50,7 @@
 		    <div class="container main-menu">
 		    	<div class="row align-items-center justify-content-between d-flex">
 			      <div id="logo">
-			        <a href="{% static 'index.html' %}"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+			        <a href="{% static 'index.html' %}"><img src="{% static 'img/lg.png' %}"  height="90" width="120" alt="" title="" /></a>
 			      </div>
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
@@ -81,11 +81,15 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-8 col-md-12">
 							<h1>
+								Welcome	{% block content %}
+										{{ pt_name }}
+									{% endblock %}
+									<br><br>
 								We Care for Your Health
 								Every Moment		
 							</h1>
 							
-							<a href="#" class="primary-btn text-uppercase">View history</a>
+							<a href="view_bills" class="primary-btn text-uppercase">View history</a>
 						</div>										
 					</div>
 				</div>					
