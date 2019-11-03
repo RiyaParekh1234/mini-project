@@ -81,6 +81,7 @@
             }
         }
         var proof_text=document.forms["form"]["id_proof"].value;
+        var aadhar=/^\d{12}$/;
         if(proof_text=="")
         {
             {
@@ -88,9 +89,14 @@
                 return false;
             }
         }
-       /* else if(check_p=="aadhar")
+        else if(isNaN(proof_text))
         {
-            if(proof_text.length!=12)
+            alert("Enter numbers only!");
+            return false;
+        }
+        else if(check_p=="aadhar")
+        {
+            if(!proof_text.match(aadhar))
             {
                 alert("Enter correct length of Aadhar number");
                 return false;
@@ -103,7 +109,7 @@
                 alert("Enter correct length of Pan number");
                 return false;
             }
-        }*/
+        }
         var gen=document.forms["form"]["gender"].value;
         if(gen=="")
         {
@@ -116,7 +122,7 @@
             alert("Please select your date of birth!");
             return false;
         }
-        /*var phno=document.forms["form"]["phone"].value;
+        var phno=document.forms["form"]["phone"].value;
         if(phno=="")
         {
             alert("Please enter your phone number!");
@@ -131,7 +137,7 @@
         {
             alert("Invalid phone number!");
             return false;
-        }*/
+        }
         else
         {
             return true;
@@ -175,7 +181,6 @@
                                             <label class="label--desc">Username</label>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -207,7 +212,7 @@
                                 <div class="input-group">
                                     <input type="radio" name="id_p" value="aadhar">Adhaar card<br>
                                     <input type="radio" name="id_p" value="pan">PAN card<br>
-                                    <input class="input--style-5" type="number" name="id_proof">
+                                    <input class="input--style-5" type="text" name="id_proof">
                                     <label class="label--desc">Enter Number</label>
                                 </div>
                             </div>
@@ -228,7 +233,7 @@
                                 <div class="name">DOB</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input type="date" name="dob">
+                                        <input type="date" name="dob" max="1999-12-31" min="1940-01-01">
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +245,7 @@
                                     <div class="col-3"></div>
                                     <div class="col-9">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="number" name="phone">
+                                            <input class="input--style-5" type="text" name="phone">
                                             <label class="label--desc">Phone Number</label>
                                         </div>
                                     </div>

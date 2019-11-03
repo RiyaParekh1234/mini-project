@@ -49,9 +49,9 @@ def login(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     if request.method == 'POST':
-        usrn = request.POST['usrname']
+        usrn = request.POST['mail']
         pass1 = request.POST['pass']
-        query="select prof,usrname,pswd1,id from person"
+        query="select prof,emailid,pswd1,id from person"
         mycursor.execute(query)
         result=mycursor.fetchall()
         for res1 in result:
@@ -92,7 +92,8 @@ def d_next(request):
         pas1 = request.POST['pass1']
         pas2 = request.POST['pass2']
         user = request.session["usr"]
-        query1 = 'insert into doctor(id,lic_no,reg_no,experience,degree,spltion,timing,fee) values ((select id from person where usrname="'+user+'"),"' + lic_no + '","' + reg_no + '","' + experience + '","' + degree +'","' + spltion +'","' + timing +'","' + fee +'")'
+        mail=request.session["mail"]
+        query1 = 'insert into doctor(id,lic_no,reg_no,experience,degree,spltion,timing,fee) values ((select id from person where emailid="'+mail+'"),"' + lic_no + '","' + reg_no + '","' + experience + '","' + degree +'","' + spltion +'","' + timing +'","' + fee +'")'
         query2 = "update person set pswd1   ='"+pas1+"',pswd2 = '"+pas2+"' where emailid = '" + request.session["email"] + "' "  
         
         mycursor.execute(query1,())
@@ -147,6 +148,7 @@ def register(request):
         conn.close()
         request.session["email"] = emailid
         request.session["usr"] = usrname
+        request.session["mail"] = emailid
         
         if prof == 'Patient':
             return redirect('/p_next')

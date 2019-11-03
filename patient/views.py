@@ -32,7 +32,7 @@ def appointment(request):
         gen = request.POST['gender']
         phno = request.POST['phno']
         emailid = request.POST['emailid']
-        date = request.POST['date']
+        date = request.POST['dt']
         time = request.POST['time']
 
         query1 = 'insert into appoint values (a_id,(select id from person where usrname="'+usrname+'"),"' + usrname + '","' + doctor + '","' + gen + '","' + phno + '","' + emailid + '","' + date + '","' + time + '")'

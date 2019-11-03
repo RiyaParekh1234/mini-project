@@ -1377,8 +1377,9 @@ table td + td {
 JotForm.paymentExtrasOnTheFly([null,null,{"name":"submitForm","qid":"2","text":"Submit Form","type":"control_button"},null,{"name":"fullName4","qid":"4","text":"Full Name","type":"control_textbox"},null,null,null,null,{"name":"dateOf","qid":"9","text":"Date of Birth","type":"control_birthdate"},{"name":"haveYou","qid":"10","text":"Have you previously attended our  facility","type":"control_radio"},null,{"name":"clickTo","qid":"12","text":"Appointment Type","type":"control_head"},null,{"name":"selectWhich","qid":"14","text":"Select which appointment type(s) you require","type":"control_checkbox"},null,null,null,null,{"name":"clickTo19","qid":"19","text":"Patients Personal details","type":"control_head"},{"name":"address","qid":"20","text":"Address","type":"control_address"},{"name":"ifYes","qid":"21","text":"If Yes, state on which condition and when?","type":"control_textarea"},{"name":"gender","qid":"22","text":"Gender","type":"control_dropdown"},{"name":"phoneNumber23","qid":"23","text":"Phone Number","type":"control_phone"},{"name":"emailAddress","qid":"24","text":"E-mail Address","type":"control_email"}]);}, 20); 
 </script>
 </head>
+
 <body>
-<form class="jotform-form"  method="post" >
+<form class="jotform-form"  method="post" name="form">
     {% csrf_token %}
   <input type="hidden" name="formID" value="92629276877476" />
   <input type="hidden" id="JWTContainer" value="" />
@@ -1417,11 +1418,6 @@ JotForm.paymentExtrasOnTheFly([null,null,{"name":"submitForm","qid":"2","text":"
         <br><br>
         <input type="text" name="doctor">
       </li>
-
-
-
-
-
       <li class="form-line jf-required" data-type="control_dropdown" id="id_22">
         <label class="form-label form-label-left form-label-auto" id="label_22" for="input_22">
           Gender
@@ -1462,8 +1458,31 @@ JotForm.paymentExtrasOnTheFly([null,null,{"name":"submitForm","qid":"2","text":"
       <li class="form-line" data-type="control_email" id="id_24">
         <label class="form-label form-label-left form-label-auto" id="label_24" for="input_24">Date</label>
         <div id="cid_24" class="form-input">
-          <input type="date" id="input_24" name="date" class="form-textbox validate[Email]" size="30" value="" data-component="email" aria-labelledby="label_24" />
+          <input type="date" id="input_24" name="dt" onsubmit="checkdt()" class="form-textbox validate[Email]" size="30" value="" data-component="email" aria-labelledby="label_24"/>
         </div>
+        <script>
+          var today=new Date();
+          var day=today.getDate();
+          
+          var month=today.getMonth()+1;
+          //alert(month);
+          var year=today.getFullYear();
+          if(day<10){
+            day='0'+day;
+          }
+          if(month<10){
+            month='0'+month;
+          }
+          today=year+'-'+month+'-'+day;
+          //alert(today);
+          document.getElementById("input_24").setAttribute("min",today);
+          function checkdt(){
+            var dt=document.forms["form"]["dt"].value;
+            if(dt!=today){
+              alert(dt);
+            }
+          }
+        </script>
       </li>
       
       </li>

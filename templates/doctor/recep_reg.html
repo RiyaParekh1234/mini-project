@@ -27,6 +27,157 @@
     <!-- Main CSS-->
     <link href="{% static 'css_register/main.css' %}" rel="stylesheet" media="all">
 </head>
+<script>
+    function validate(){
+        var user=document.forms["form"]["usrn"].value;
+        if(user=="")
+        {
+            alert("Enter username!");
+            return false;
+        }
+        else if(!isNaN(user))
+        {
+            alert("Enter characters only for username!");
+            return false;
+        }
+        var addr=document.forms["form"]["addr"].value;
+        if(addr=="")
+        {
+            alert("Enter address!!");
+            return false;
+        }
+        var mail=document.forms["form"]["email"].value;
+        var mail_val=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(mail=="")
+        {
+            alert("Enter email address!");
+            return false;
+        }
+        else if(!mail_val.test(mail))
+        {
+            alert("Invalid email!");
+            return false;
+        }
+        var proof=document.forms["form"]["id_p"].value;
+        var p_num=document.getElementsByName('id_p');
+        var check_p;
+        if(proof=="")
+        {
+            alert("Please select one ID proof!");
+            return false;
+        }
+        for(i=0;i<p_num.length;i++)
+        {
+            if(p_num[i].checked)
+            {
+                check_p=p_num[i].value;
+                break;
+            }
+        }
+        var proof_text=document.forms["form"]["id_proof"].value;
+        var aadhar=/^\d{12}$/;
+        if(proof_text=="")
+        {
+            {
+                alert("Please enter " +check_p+ " number!");
+                return false;
+            }
+        }
+        else if(isNaN(proof_text))
+        {
+            alert("Enter numbers only!");
+            return false;
+        }
+        else if(check_p=="aadhar")
+        {
+            if(!proof_text.match(aadhar))
+            {
+                alert("Enter correct length of Aadhar number");
+                return false;
+            }
+        }
+        else if(check_p=="pan")
+        {
+            if(proof_text.length!=10)
+            {
+                alert("Enter correct length of Pan number");
+                return false;
+            }
+        }
+        var gen=document.forms["form"]["gender"].value;
+        if(gen=="")
+        {
+            alert("Please select your gender!");
+            return false;
+        }
+        var birth_date=document.forms["form"]["dob"].value;
+        if(birth_date=="")
+        {
+            alert("Please select your date of birth!");
+            return false;
+        }
+        var phno=document.forms["form"]["phno"].value;
+        if(phno=="")
+        {
+            alert("Please enter your phone number!");
+            return false;
+        }
+        else if(isNaN(phno))
+        {
+            alert("Please enter only numbers!");
+            return false;
+        }
+        else if(phno.length!=10)
+        {
+            alert("Invalid phone number!");
+            return false;
+        }
+        var work=document.forms["form"]["wh_hr"].value;
+        if(work=="")
+        {
+            alert("Please enter working hours!");
+            return false;
+        }
+        else if(isNaN(work))
+        {
+            alert("Enter in numbers!");
+            return false;
+        }
+        var salary=document.forms["form"]["sal"].value;
+        if(salary=="")
+        {
+            alert("Enter salary of receptionist!");
+            return false;
+        }
+        else if(isNaN(salary))
+        {
+            alert("Enter in numbers!");
+            return false;
+        }
+        var pswd1=document.forms["form"]["pswd1"].value;
+        if(pswd1.length<8)
+        {
+            alert("Password should atleast contain 8 characters!");
+            return false;
+        }
+        var pswd2=document.forms["form"]["pswd2"].value;
+        if(pswd1!=pswd2)
+        {
+            alert("Password doesn't match!");
+            return false;
+        }
+        var recep=document.forms["form"]["recep"].value;
+        if(recep=="")
+        {
+            alert("Please select receptionist type!");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+</script>
 <body>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
@@ -35,7 +186,7 @@
                     <h2 class="title">Receptionist Registration Form</h2>
                 </div>
                 <div class="card-body">
-                    <form  method="post">
+                    <form name="form" method="post">
                         {% csrf_token %}
                         <div class="form-row m-b-55">
                             <div class="name">Name</div>
@@ -91,8 +242,6 @@
                                     <input type="radio" name="gender" value="male">Male<br>
                                     <input type="radio" name="gender" value="female">Female<br>
                                     <input type="radio" name="gender" value="others">Others<br>
-                                    <input class="input--style-5" type="text" name="gender">
-                                    <label class="label--desc">Enter Gender credentials</label>
                                 </div>
                             </div>
                         </div>          
@@ -100,7 +249,7 @@
                                 <div class="name">DOB</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input type="date" name="dob">
+                                        <input type="date" name="dob" max="1999-12-31" min="1940-01-01">
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +338,7 @@
                                 </div>
                             </div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">DONE</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit" onclick="return validate()">DONE</button>
                         </div>
                     </form>
                 </div>
