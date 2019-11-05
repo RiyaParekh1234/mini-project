@@ -67,17 +67,25 @@ def s_hours(request):
 def treat_list(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
-    #usrn = request.session["user"]
+    usrn = request.session["user"]
     u_id = request.session["uid"]
-    query1 = "select usrname from person where id="+str(u_id)+" "
-    mycursor.execute(query1,())
-    res1=mycursor.fetchone()
-    query2 = "select p.id,d.usrname,d.emailid,d.phno,p.ht,p.wt,p.med_history from person d,patient p,appoint a where d.id=a.id and a.doctor="+res1[0]+""
+    # query1 = "select usrname from person where emailid="+str(usrn)+" "
+    # mycursor.execute(query1,())
+    # res1=mycursor.fetchone()
+    #query2 = "select d.id,d.usrname,d.emailid,d.phno,p.ht,p.wt,p.med_history from person d,patient p,appoint a where d.id=a.id and a.doctor="+res1[0]+""
+    query2 = "select id,usrname from appoint where doctor ='"+ str(usrn) +"' "
     mycursor.execute(query2,())    
     res2=mycursor.fetchall()
+    query3 = "select emailid,phno from person where id ='" +str(res2[0][0]) + "'  "
+    mycursor.execute(query3,())    
+    res3=mycursor.fetchall()
+
+    query4 = "select ht,wt,med_history from patient where id ='" +str(res2[0][0]) + "'  "
+    mycursor.execute(query4,())    
+    res4=mycursor.fetchall()
     conn.commit()
     conn.close() 
-    return render(request,'doctor/treat_list.html',{'res2':res2})     
+    return render(request,'doctor/treat_list.html',{'res2':res2,'res3':res3,'res4':res4})     
 
 def register(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')

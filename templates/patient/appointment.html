@@ -1413,10 +1413,16 @@ JotForm.paymentExtrasOnTheFly([null,null,{"name":"submitForm","qid":"2","text":"
           <span class="form-required">
             *
           </span>
-          
+          <div id="cid_22" class="form-input jf-required">
+            <select class="form-dropdown validate[required]" id="input_22" name="doctor" style="width:150px" data-component="dropdown" required="" aria-labelledby="label_22">
+              {% for i in result %}
+              <option>{{i.0}}</option>
+              {% endfor %}
+            </select>
+          </div>
         </label>
         <br><br>
-        <input type="text" name="doctor">
+        <!-- <input type="text" name="doctor"> -->
       </li>
       <li class="form-line jf-required" data-type="control_dropdown" id="id_22">
         <label class="form-label form-label-left form-label-auto" id="label_22" for="input_22">
@@ -1458,7 +1464,11 @@ JotForm.paymentExtrasOnTheFly([null,null,{"name":"submitForm","qid":"2","text":"
       <li class="form-line" data-type="control_email" id="id_24">
         <label class="form-label form-label-left form-label-auto" id="label_24" for="input_24">Date</label>
         <div id="cid_24" class="form-input">
+<<<<<<< HEAD
           <input type="date" id="input_24" name="dt" min="" ondragover="checkdt()" class="form-textbox validate[Email]" size="30" value="" data-component="email" aria-labelledby="label_24"/>
+=======
+          <input type="date" id="input_24" name="dt" onchange="checkdt()" class="form-textbox validate[Email]" size="30" value="" data-component="email" aria-labelledby="label_24"/>
+>>>>>>> 4cf31478b6380ec4dee3d38bdba518504ce9720b
         </div>
         <script>
           function checkdt(){
@@ -1476,12 +1486,11 @@ JotForm.paymentExtrasOnTheFly([null,null,{"name":"submitForm","qid":"2","text":"
             }
             today=year+'-'+month+'-'+day;
             //alert(today);
-            document.getElementByName("dt").min=today;          
-            var dt=document.forms["form"]["dt"].value;
-            if(dt<=today){
-              alert("Wrong!!!");
-              return false;
-            }
+            document.getElementById("input_24").setAttribute("min",today);          
+            /*var dt=document.forms["form"]["dt"].value;
+            if(dt!=today){
+              alert(dt);
+            }*/
           }
         </script>
       </li>
