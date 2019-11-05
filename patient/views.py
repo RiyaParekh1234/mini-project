@@ -26,6 +26,11 @@ def patient(request):
 def appointment(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
+    q = "select usrname from person where prof='Doctor' "
+    mycursor.execute(q,())
+    res = mycursor.fetchall()
+    
+        
     if request.method == 'POST':
         usrname = request.POST['usrname']
         doctor = request.POST['doctor']
@@ -35,7 +40,7 @@ def appointment(request):
         date = request.POST['dt']
         time = request.POST['time']
 
-        query1 = 'insert into appoint values (a_id,(select id from person where usrname="'+usrname+'"),"' + usrname + '","' + doctor + '","' + gen + '","' + phno + '","' + emailid + '","' + date + '","' + time + '")'
+        query1 = 'insert into appoint values (a_id,(select id from person where emailid="'+emailid+'"),"' + usrname + '",(select emailid from person where usrname = "'+doctor +'"),"' + gen + '","' + phno + '","' + emailid + '","' + date + '","' + time + '")'
         mycursor.execute(query1,())
         
         conn.commit()
@@ -43,7 +48,7 @@ def appointment(request):
         
         return redirect('/patient')
     else:
-        return render(request,'patient/appointment.html')
+        return render(request,'patient/appointment.html',{'result':res})
 
 
 def bill(request):
@@ -51,7 +56,7 @@ def bill(request):
     mycursor = conn.cursor()
     usrn = request.session["user"]
     u_id = request.session["uid"]
-    query1 = "select phno,emailid from person where usrname = '" + request.session["user"] + "'"
+    query1 = "select phno,emailid from person where emailid = '" + request.session["user"] + "'"
     query2 = "select bill_id,doc_name,bill_dt,diag,amt,total_amt from bill where id = '" + str(u_id) + "'"
     
     mycursor.execute(query1,())

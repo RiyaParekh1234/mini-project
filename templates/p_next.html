@@ -33,18 +33,30 @@
         {
             alert("Enter your weight!");
             return false;
+        }   
+        else if(!(120>weight))
+        {
+            alert("Enter valid weight!");
+            return false;
         }
         else if(isNaN(weight))
         {
             alert("Enter only integers!");
             return false;
         }
+        
         var height=document.forms["form"]["ht"].value;
+        if(!(8>height))
+        {
+            alert("Enter valid height!");
+            return false;
+        }
         if(height=="")
         {
             alert("Enter your height!");
             return false;
         }
+        
         else if(isNaN(height))
         {
             alert("Enter only integers!");

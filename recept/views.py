@@ -58,9 +58,13 @@ def show_bill(request):
     conn = mysql.connector.connect(user = 'root',password = 'root',host = 'localhost',database = 'trial')
     mycursor = conn.cursor()
     #uid=request.session["uid"]
-    query="select * from bill"
+    query="select bill_id,id,bill_dt,diag,amt from bill"
     mycursor.execute(query)
     res=mycursor.fetchall()
+
+    q1 = "select id,usrname from person" 
+    mycursor.execute(q1)
+    res1=mycursor.fetchall()
     conn.commit()
     conn.close()
-    return render(request,'recept/view_bills.html',{'result':res})
+    return render(request,'recept/view_bills.html',{'result':res,'result1':res1})

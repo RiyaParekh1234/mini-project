@@ -75,13 +75,21 @@
                             <tr width=100%>   
                                 <th>{{i.0}}</th>
                                 <th>{{i.1}}</th>
-                                <th>{{i.2}}</th>
-                                <th>{{i.3}}</th>            
-                                <th>{{i.4}}</th>
-                                <th>{{i.5}}</th>
-                                <th>{{i.6}}</th>     
+                        {% endfor %}        
+                        {% for i in res3 %}    
+                                
+                                <th>{{i.0}}</th>
+                                <th>{{i.1}}</th>            
+                        {% endfor %}
+                        {% for i in res4 %}    
+                        
+                                <th>{{i.0}}</th>
+                                <th>{{i.1}}</th>
+                                <th>{{i.2}}</th>     
                             </tr>    
                         {% endfor %}
+
+                        
                     </table>
                 </div>
             </div>

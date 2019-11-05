@@ -64,15 +64,21 @@
                             <form method="post" name="form">
                             <h4>All Bills</h4>
                             {% for i in result %}
+                            
                             <div class="comment-list"><br><br>
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="desc">
                                             <h5><p>BILL_ID: {{ i.0 }}</p></h5>
                                             <h5><p>PATIENT ID: {{i.1}}</p></h5>
-                                            <h5><p>DATE: {{ i.3 }} </p></h5>
-                                            <h5><p>DIAGNOSIS: {{i.4}}</p></h5>
-                                            <h5><p>AMOUNT: {{i.5}}</p></h5>
+                                            {% for j in result1 %}
+                                            {% if j.0 is i.1 %}
+                                            <h5><p>PATIENT NAME: {{j.1}}</p></h5>
+                                            {% endif %}
+                                            {% endfor %}
+                                            <h5><p>DATE: {{ i.2 }} </p></h5>
+                                            <h5><p>DIAGNOSIS: {{i.3}}</p></h5>
+                                            <h5><p>AMOUNT: {{i.4}}</p></h5>
                                             <input type="hidden" name="b_id" id="b_id" value="{{i.0}}">
                                         </div>
                                     </div>
@@ -80,6 +86,7 @@
                                 <h6>---------------------------------</h6>
                             </div>
                             {% endfor %}
+                            
                         </div>
                 </div>
             </div>	
