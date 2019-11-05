@@ -28,9 +28,7 @@ def appointment(request):
     mycursor = conn.cursor()
     q = "select usrname from person where prof='Doctor' "
     mycursor.execute(q,())
-    res = mycursor.fetchall()
-    
-        
+    res = mycursor.fetchall()    
     if request.method == 'POST':
         usrname = request.POST['usrname']
         doctor = request.POST['doctor']
@@ -56,7 +54,7 @@ def bill(request):
     mycursor = conn.cursor()
     usrn = request.session["user"]
     u_id = request.session["uid"]
-    query1 = "select phno,emailid from person where emailid = '" + request.session["user"] + "'"
+    query1 = "select phno,emailid,usrname from person where emailid = '" + request.session["user"] + "'"
     query2 = "select bill_id,doc_name,bill_dt,diag,amt,total_amt from bill where id = '" + str(u_id) + "'"
     
     mycursor.execute(query1,())
@@ -67,7 +65,7 @@ def bill(request):
     
     conn.commit()
     conn.close()
-    return render(request,'patient/bill.html',{'usrname':usrn,'phno': res1[0][0],'emailid': res1[0][1],'date':res2[0][2],'bill_id':res2[0][0],'doc':res2[0][1],'diag':res2[0][3],'amt':res2[0][4],'tot':res2[0][5]})    
+    return render(request,'patient/bill.html',{'usrname':res1[0][2],'phno': res1[0][0],'emailid': res1[0][1],'date':res2[0][2],'bill_id':res2[0][0],'doc':res2[0][1],'diag':res2[0][3],'amt':res2[0][4],'tot':res2[0][5]})    
 
 
 def p_logout(request):

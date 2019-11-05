@@ -75,19 +75,24 @@
                             <tr width=100%>   
                                 <th>{{i.0}}</th>
                                 <th>{{i.1}}</th>
-                        {% endfor %}        
-                        {% for i in res3 %}    
                                 
-                                <th>{{i.0}}</th>
-                                <th>{{i.1}}</th>            
+                        {% for j in res3 %} 
+                        {% if j.0 is i.0 %}    
+                                <th>{{j.1}}</th>
+                                <th>{{j.2}}</th>
+                        {% endif %}                
                         {% endfor %}
-                        {% for i in res4 %}    
                         
-                                <th>{{i.0}}</th>
-                                <th>{{i.1}}</th>
-                                <th>{{i.2}}</th>     
-                            </tr>    
+                        {% for k in res4 %}    
+                        {% if k.0 is i.0 %} 
+                                <th>{{k.1}}</th>
+                                <th>{{k.2}}</th>
+                                <th>{{k.3}}</th>     
+                        {% endif %}    
                         {% endfor %}
+                        {% endfor %}
+                             </tr>    
+                        
 
                         
                     </table>

@@ -76,11 +76,12 @@ def treat_list(request):
     query2 = "select id,usrname from appoint where doctor ='"+ str(usrn) +"' "
     mycursor.execute(query2,())    
     res2=mycursor.fetchall()
-    query3 = "select emailid,phno from person where id ='" +str(res2[0][0]) + "'  "
+
+    query3 = "select id,emailid,phno from person "
     mycursor.execute(query3,())    
     res3=mycursor.fetchall()
 
-    query4 = "select ht,wt,med_history from patient where id ='" +str(res2[0][0]) + "'  "
+    query4 = "select id,ht,wt,med_history from patient"
     mycursor.execute(query4,())    
     res4=mycursor.fetchall()
     conn.commit()
