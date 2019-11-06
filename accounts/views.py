@@ -115,10 +115,9 @@ def p_next(request):
         med = request.POST['med']
         pas1 = request.POST['pass1']
         pas2 = request.POST['pass2']
-        user = request.session["usr"]
-        query1 = 'insert into patient(id,ht,wt,med_history) values ((select id from person where emailid="'+user+'"),"' + ht + '","' + wt + '","' + med + '")'
-        query2 = "update person set pswd1 ='"+pas1+"',pswd2 = '"+pas2+"' where emailid = '" + request.session["email"] + "' "  
-        
+        user = request.session["mail"]
+        query1 = 'insert into patient(id,ht,wt,med_history) values((select id from person where emailid="'+user+'"),"' + ht + '","' + wt + '","' + med + '")'
+        query2 = "update person set pswd1 ='"+pas1+"',pswd2 = '"+pas2+"' where emailid = '" + user + "' "  
         mycursor.execute(query1,())
         mycursor.execute(query2,())
         conn.commit()

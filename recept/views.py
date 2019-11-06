@@ -20,8 +20,9 @@ def bill_final(request):
         mycursor.execute(query1)
         h_id = mycursor.fetchone()
         query = "update bill set amt='"+b_amt+"' where id = '"+ str(h_id[0])+"' "
+        q1 = "call up_bill('"+ str(h_id[0]) +"') "
         mycursor.execute(query)
-
+        mycursor.execute(q1)
         conn.commit()
         conn.close()
         return redirect('/recept')
